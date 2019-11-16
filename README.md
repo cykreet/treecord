@@ -20,12 +20,12 @@ $ git clone https://github.com/Cykreet/discord-tt.git
 2. copy `.env.example` to `.env`. 
 3. copy your application's client id and paste it in the `CLIENTID` .env variable.
 4. run these commands from your command line:
-```js
+```bash
 # install dependencies
 $ npm install
 
 # compile typescript to javascript
-$ tsc
+$ npm run-script build
 
 # run compiled index.js
 $ npm start
