@@ -11,7 +11,6 @@ const clientId: string | void = process.env.CLIENTID ? process.env.CLIENTID : co
 
 const startTime = Date.now();
 
-
 async function teamtrees() {
     const donator = await util.getRecentDonation();
     const totalTrees = await util.getTotalTrees();
