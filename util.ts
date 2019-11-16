@@ -31,17 +31,6 @@ export class Util {
     } 
 
     /**
-     * Restrict a value to a given range.
-     * @param value The value to restrict.
-     * @param min The minimum range value.
-     * @param max The maximum range value.
-     * @returns {number} The clamped value.
-     */
-    public clamp(value: number, min: number, max: number) {
-        return Math.max(min, Math.min(max, value));
-    }
-
-    /**
      * Formats a number to include thousand separators.
      * @param num The number to format.
      * @returns {string} The formatted number with thousand separators.
