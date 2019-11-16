@@ -1,6 +1,6 @@
 # discord-tt
 
-simple discord rpc for [teamtrees.org](https://teamtrees.org). this project was my excuse to try out typescript, guaranteed the 2nd best typescript project on github. was it worth? absolutely not, but also yes, this will most likely break into several million pieces after teamtrees' deadline, so there's that.
+simple discord rpc for [teamtrees.org](https://teamtrees.org). this project was my excuse to try out typescript, guaranteed the 2nd best typescript project on github. was it worth it? absolutely not, but also yes, this will most likely break into several million pieces after teamtrees' deadline, so there's that.
 
 ![Example-1](/images/example-1.png)
 
