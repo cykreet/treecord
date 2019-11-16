@@ -1,0 +1,22 @@
+{
+  "name": "discord-tt",
+  "version": "2.2.3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node index.ts"
+  },
+  "author": "cykreet",
+  "dependencies": {
+    "@types/node": "^12.12.8",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "discord-rpc": "^3.0.1",
+    "dotenv": "^8.2.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "ts-node": "^8.5.2"
+  }
+}

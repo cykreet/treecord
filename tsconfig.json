@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "dist",
+        "removeComments": true,
+        "moduleResolution": "node",
+        "sourceMap": true
+    },
+    "include": [
+        "*",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "images"
+    ]
+}
