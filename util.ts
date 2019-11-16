@@ -85,7 +85,7 @@ export class Util {
      * Gets the total trees planted at teamtrees.org
      * @returns {Promise<ITotal>} Total amount of trees as well as percentage planted and a little progress bar.
      */
-    public async getTotalTrees() {
+    public async getTreeStats() {
         const $ = await this.fetchData();
 
         const trees = parseInt($(".counter").attr("data-count"));

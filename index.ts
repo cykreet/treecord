@@ -7,13 +7,15 @@ require("dotenv").config({ path: path.resolve(process.cwd(), ".env") });
 
 const util = new Util();
 const client = new RPC.Client({ "transport": "ipc" });
-const clientId: string | void = process.env.CLIENTID ? process.env.CLIENTID : console.error("CLIENTID was not detected.");
+const clientId = process.env.CLIENTID;
+
+if (!clientId) throw new Error("CLIENTID was not detected. Please include it in .env");
 
 const startTime = Date.now();
 
 async function teamtrees() {
     const donator = await util.getRecentDonation();
-    const totalTrees = await util.getTotalTrees();
+    const totalTrees = await util.getTreeStats();
 
     try {
         client.setActivity({
@@ -36,9 +38,7 @@ async function teamtrees() {
 client.on("ready", () => {
     console.log(`discord-tt v${require(path.resolve(process.cwd(), "package.json")).version}\nConnected to Discord.`);
 
-    setInterval(() => {
-        teamtrees();
-    }, 1000 * 10)
+    setInterval(teamtrees, 1000 * 10);
 });
 
-client.login({ clientId }).catch(console.error);
+client.login({ clientId });
