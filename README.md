@@ -10,7 +10,8 @@ simple discord rpc for [teamtrees.org](https://teamtrees.org). this project was 
 
 ## instructions
 
-before we setup the project itself, head over to [discord's developer portal](https://discordapp.com/developers) and create an application with the name of your choosing, this will be displayed in your rpc. then, upload all the images in [images](/images) to your application's rich presence art assets, except for the example images. unless you on plan modifying the code, it is very important that they're uploaded with their original names. lastly, keep note of your client id as we'll be using that shortly.
+before we setup the project itself, head over to [discord's developer portal](https://discordapp.com/developers) and create an application with the name of your choosing, this will be displayed in your rpc. then, upload all the images in [images](/images) to your application's rich presence art assets, except for the example images. unless you plan on modifying the code, it is very important that they're uploaded with their original names. lastly, keep note of 
+your client id as we'll be using that shortly.
 
 1. clone this repository:
 ```bash
