@@ -15,7 +15,8 @@
     "cheerio": "^1.0.0-rc.3",
     "discord-rpc": "^3.0.1",
     "dotenv": "^8.2.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
     "ts-node": "^8.5.2"

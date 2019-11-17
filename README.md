@@ -17,8 +17,8 @@ your client id as we'll be using that shortly.
 ```bash
 $ git clone https://github.com/Cykreet/discord-tt.git
 ```
-2. copy `.env.example` to `.env`. 
-3. copy your application's client id and paste it in the `CLIENTID` .env variable.
+2. rename `.env.example` to `.env`. 
+3. copy your application's previously mentioned client id and replace the `application_client_id` placeholder in `.env`.
 4. run these commands from your command line:
 ```bash
 # install dependencies
