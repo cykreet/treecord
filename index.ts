@@ -19,13 +19,13 @@ async function teamtrees() {
 
     try {
         client.setActivity({
-            "details": `🌲 ${totalTrees.total >= 20000000 ?  util.formatNum(totalTrees.total) + " 🎉" : util.formatNum(totalTrees.total)}`,
+            "details": `${totalTrees.total >= 20000000 ?  "🎉 " + util.formatNum(totalTrees.total) : util.formatNum(totalTrees.total)} trees planted`,
             "state": `${totalTrees.progress} | ${totalTrees.complete}%`,
             "largeImageKey": util.getBadge(donator.trees),
             "largeImageText": `${donator.name.length > 20 ? `${donator.name.substr(0, 12)}...` : donator.name} planted ${donator.trees} tree${donator.trees > 1 ? "s" : ""}!`,
             "smallImageKey": "smallicon",
             "smallImageText": donator.message !== null && donator.message.length >= 2 ? donator.message : "#teamtrees",
-            "startTimestamp" : startTime, 
+            "startTimestamp" : startTime,
             "instance": 0,
             "matchSecret": util.genHash(30),
             "spectateSecret": util.genHash(30),

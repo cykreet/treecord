@@ -114,7 +114,7 @@ export class Util {
     
             return result;
         } catch {
-            throw Error("Something went wrong in the attempt to get total trees.");
+            throw new Error("Something went wrong in the attempt to get total trees.");
         }
     }
     
@@ -135,7 +135,7 @@ export class Util {
 
             return result;
         } catch {
-            throw Error("Something went wrong in the attempt to get the most recent donation.");
+            throw new Error("Something went wrong in the attempt to get the most recent donation.");
         }
     }
 }
