@@ -35,8 +35,10 @@ async function teamtrees() {
     }
 }
 
+console.log(`discord-tt v${require(path.resolve(process.cwd(), "package.json")).version}`);
+
 client.on("ready", () => {
-    console.log(`discord-tt v${require(path.resolve(process.cwd(), "package.json")).version}\nConnected to Discord.`);
+    console.log("Connected to Discord.");
 
     setInterval(teamtrees, 1000 * 10);
 });
