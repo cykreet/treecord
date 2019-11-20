@@ -1,10 +1,9 @@
 {
   "name": "discord-tt",
-  "version": "2.2.7",
-  "main": "index.js",
+  "version": "2.2.9",
+  "main": "index.ts",
   "scripts": {
     "start": "node ./dist/index.js",
-    "build": "tsc",
     "dev": "ts-node index.ts"
   },
   "author": "cykreet",
@@ -15,10 +14,10 @@
     "cheerio": "^1.0.0-rc.3",
     "discord-rpc": "^3.0.1",
     "dotenv": "^8.2.0",
-    "path": "^0.12.7",
-    "typescript": "^3.7.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
-    "ts-node": "^8.5.2"
+    "ts-node": "^8.5.2",
+    "typescript": "^3.7.2"
   }
 }
