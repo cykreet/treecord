@@ -52,8 +52,8 @@ export async function teamTreesRPC() {
         : "#teamtrees",
     startTimestamp: startTime,
     instance: 0,
-    matchSecret: util.genHash(30),
-    spectateSecret: util.genHash(30)
+    matchSecret: util.randomString(30),
+    spectateSecret: util.randomString(30)
   });
 }
 

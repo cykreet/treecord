@@ -4,7 +4,7 @@ export class Util {
    * @param length Amount of characters the string should be.
    * @returns {string} The randomly generated string.
    */
-  public genHash(length: number) {
+  public randomString(length: number) {
     let result: string = "";
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
 
