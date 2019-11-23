@@ -5,14 +5,11 @@ export class Util {
    * @returns {string} The randomly generated string.
    */
   public genHash(length: number) {
-    let result: string;
+    let result: string = "";
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
+    for (var i = 0; i < length; i++)
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
 
     return result;
   }
