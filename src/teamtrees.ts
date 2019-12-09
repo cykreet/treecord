@@ -1,6 +1,6 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
-import { Util } from "./util";
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+import { Util } from './util';
 
 const util = new Util();
 const startTime = Date.now();
@@ -36,25 +36,25 @@ export async function teamTreesRPC() {
 
   let rpc: IRPC;
 
-  return rpc = {
+  return (rpc = {
     details: `${util.formatNum(totalTrees.total)} trees planted`,
     state: `${totalTrees.progress} | ${totalTrees.percentage}%`,
     largeImageKey: util.getBadge(donator.trees),
     largeImageText: `${
-      donator.name.length > 20
+      donator.name.length > 12
         ? `${donator.name.substr(0, 12)}...`
         : donator.name
-    } planted ${donator.trees} tree${donator.trees > 1 ? "s" : ""}!`,
-    smallImageKey: "smallicon",
+    } planted ${donator.trees} tree${donator.trees > 1 ? 's' : ''}!`,
+    smallImageKey: 'smallicon',
     smallImageText:
       donator.message !== null && donator.message.length >= 2
         ? donator.message
-        : "#teamtrees",
+        : '#teamtrees',
     startTimestamp: startTime,
     instance: 0,
     matchSecret: util.randomString(30),
-    spectateSecret: util.randomString(30)
-  };
+    spectateSecret: util.randomString(30),
+  });
 }
 
 /**
@@ -62,7 +62,7 @@ export async function teamTreesRPC() {
  * @returns {Promise<AxiosResponse>} teamtrees.org data.
  */
 async function fetchData() {
-  const result = await axios.get("https://teamtrees.org");
+  const result = await axios.get('https://teamtrees.org');
 
   return cheerio.load(result.data);
 }
@@ -74,20 +74,24 @@ async function fetchData() {
 async function getTreeStats() {
   const $ = await fetchData();
 
-  const trees = parseInt($(".counter").attr("data-count"));
+  const trees = parseInt($('.counter').attr('data-count'));
   const complete = Math.trunc(Math.floor((trees / 200000) * 1000) / 1000);
 
   const chars = {
-    blank: "-",
-    filled: "#"
-  }
+    blank: '-',
+    filled: '#',
+  };
 
-  const filled = parseInt((complete / 10).toString(), 10);
+  const filled =
+    parseInt((complete / 10).toString(), 10) >= 10
+      ? 10
+      : parseInt((complete / 10).toString(), 10);
 
   const result: ITotal = {
     total: trees,
     percentage: complete,
-    progress: "[" + chars.filled.repeat(filled) + chars.blank.repeat(10 - filled) + "]"
+    progress:
+      '[' + chars.filled.repeat(filled) + chars.blank.repeat(10 - filled) + ']',
   };
 
   return result;
@@ -99,29 +103,29 @@ async function getTreeStats() {
  */
 async function getRecentDonation() {
   const $ = await fetchData();
-  const recent = $("#recent-donations")
+  const recent = $('#recent-donations')
     .children()
     .first()
     .html();
 
   const result: IDonation = {
     name: $(recent)
-      .find("strong")
+      .find('strong')
       .text()
       .trim(),
     trees: parseInt(
       $(recent)
-        .find(".feed-tree-count")
+        .find('.feed-tree-count')
         .text()
-        .replace("trees", "")
+        .replace('trees', '')
     ),
     message: $(recent)
-      .find(".medium")
+      .find('.medium')
       .text()
       ? $(recent)
-          .find(".medium")
+          .find('.medium')
           .text()
-      : null
+      : null,
   };
 
   return result;
