@@ -8,12 +8,6 @@ simple discord rpc for [teamtrees.org](https://teamtrees.org). this will most li
 
 ![Example-3](/assets/examples/example-3.png)
 
-if you'd like to use your own discord application (badge images and name) instead of the one used in the examples above, follow the [custom discord application](#custom-discord-application) instructions before following the main instructions.
-
-### custom discord application
-
-head over to [discord's developer portal](https://discordapp.com/developers) and create an application with the name of your choosing, this will be displayed in your rpc. then, upload all the images in [assets](/assets) to your application's rich presence art assets, except for the example images. unless you plan on modifying the code, it is very important that they're uploaded with their original names. lastly, replace the client id located in `.env` with your application's client id.
-
 ## instructions
 
 1. clone this repository:
