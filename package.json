@@ -1,9 +1,10 @@
 {
   "name": "discord-tt",
-  "version": "2.2.9",
+  "version": "2.2.13",
   "main": "index.ts",
   "scripts": {
     "start": "node ./dist/index.js",
+    "build": "tsc",
     "dev": "ts-node index.ts"
   },
   "author": "cykreet",

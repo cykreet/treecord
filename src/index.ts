@@ -1,4 +1,4 @@
-import { teamTreesRPC } from "./src/teamtrees";
+import { teamTreesRPC } from "./teamtrees";
 
 import * as path from "path";
 import * as RPC from "discord-rpc";

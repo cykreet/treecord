@@ -13,7 +13,7 @@ interface IDonation {
 
 interface ITotal {
   total: number;
-  complete: number;
+  percentage: number;
   progress: string;
 }
 
@@ -36,9 +36,9 @@ export async function teamTreesRPC() {
 
   let rpc: IRPC;
 
-  return (rpc = {
+  return rpc = {
     details: `${util.formatNum(totalTrees.total)} trees planted`,
-    state: `${totalTrees.progress} | ${totalTrees.complete}%`,
+    state: `${totalTrees.progress} | ${totalTrees.percentage}%`,
     largeImageKey: util.getBadge(donator.trees),
     largeImageText: `${
       donator.name.length > 20
@@ -54,7 +54,7 @@ export async function teamTreesRPC() {
     instance: 0,
     matchSecret: util.randomString(30),
     spectateSecret: util.randomString(30)
-  });
+  };
 }
 
 /**
@@ -77,35 +77,17 @@ async function getTreeStats() {
   const trees = parseInt($(".counter").attr("data-count"));
   const complete = Math.trunc(Math.floor((trees / 200000) * 1000) / 1000);
 
-  let progress;
-  if (complete < 10) {
-    progress = "----------";
-  } else if (complete < 20) {
-    progress = "#---------";
-  } else if (complete < 30) {
-    progress = "##--------";
-  } else if (complete < 40) {
-    progress = "###-------";
-  } else if (complete < 50) {
-    progress = "####------";
-  } else if (complete < 60) {
-    progress = "#####-----";
-  } else if (complete < 70) {
-    progress = "######----";
-  } else if (complete < 80) {
-    progress = "#######---";
-  } else if (complete < 90) {
-    progress = "########--";
-  } else if (complete < 100) {
-    progress = "#########-";
-  } else {
-    progress = "##########";
+  const chars = {
+    blank: "-",
+    filled: "#"
   }
+
+  const filled = parseInt((complete / 10).toString(), 10);
 
   const result: ITotal = {
     total: trees,
-    complete: complete,
-    progress: "[" + progress + "]"
+    percentage: complete,
+    progress: "[" + chars.filled.repeat(filled) + chars.blank.repeat(10 - filled) + "]"
   };
 
   return result;
