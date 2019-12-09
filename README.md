@@ -20,7 +20,7 @@ $ git clone https://github.com/Cykreet/discord-tt.git
 $ npm install
 
 # compile typescript to javascript
-$ tsc
+$ npm run build
 
 # run compiled index.js
 $ npm start
