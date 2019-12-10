@@ -1,48 +1,23 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
-import { Util } from './util';
+import cheerio from 'cheerio';
 
-const util = new Util();
+import { randomString } from './util';
+
+const matchSecret = randomString(30);
+const spectateSecret = randomString(30);
 const startTime = Date.now();
-
-interface IDonation {
-  name: string;
-  trees: number;
-  message: string | null;
-}
-
-interface ITotal {
-  total: number;
-  percentage: number;
-  progress: string;
-}
-
-interface IRPC {
-  details: string;
-  state: string;
-  largeImageKey: string;
-  largeImageText: string;
-  smallImageKey: string;
-  smallImageText: string;
-  startTimestamp: number;
-  instance: number | boolean;
-  matchSecret: string;
-  spectateSecret: string;
-}
 
 export async function teamTreesRPC() {
   const donator = await getRecentDonation();
   const totalTrees = await getTreeStats();
 
-  let rpc: IRPC;
-
-  return (rpc = {
-    details: `${util.formatNum(totalTrees.total)} trees planted`,
+  return {
+    details: `${totalTrees.total.toLocaleString('en')} trees planted`,
     state: `${totalTrees.progress} | ${totalTrees.percentage}%`,
-    largeImageKey: util.getBadge(donator.trees),
+    largeImageKey: getBadge(donator.trees),
     largeImageText: `${
-      donator.name.length > 12
-        ? `${donator.name.substr(0, 12)}...`
+      donator.name.length > 105
+        ? `${donator.name.substr(0, 102)}...`
         : donator.name
     } planted ${donator.trees} tree${donator.trees > 1 ? 's' : ''}!`,
     smallImageKey: 'smallicon',
@@ -52,24 +27,22 @@ export async function teamTreesRPC() {
         : '#teamtrees',
     startTimestamp: startTime,
     instance: 0,
-    matchSecret: util.randomString(30),
-    spectateSecret: util.randomString(30),
-  });
+    matchSecret: matchSecret,
+    spectateSecret: spectateSecret,
+  };
 }
 
 /**
  * Fetch data from teamtrees.org.
- * @returns {Promise<AxiosResponse>} teamtrees.org data.
  */
 async function fetchData() {
-  const result = await axios.get('https://teamtrees.org');
-
-  return cheerio.load(result.data);
+  return await axios
+    .get('https://teamtrees.org/')
+    .then(r => cheerio.load(r.data));
 }
 
 /**
  * Gets the total trees planted at teamtrees.org
- * @returns {Promise<ITotal>} Total amount of trees as well as percentage planted and a little progress bar.
  */
 async function getTreeStats() {
   const $ = await fetchData();
@@ -87,19 +60,16 @@ async function getTreeStats() {
       ? 10
       : parseInt((complete / 10).toString(), 10);
 
-  const result: ITotal = {
+  return {
     total: trees,
     percentage: complete,
     progress:
       '[' + chars.filled.repeat(filled) + chars.blank.repeat(10 - filled) + ']',
   };
-
-  return result;
 }
 
 /**
  * Gets the most recent donation at teamtrees.org
- * @returns {Promise<IDonation>} Name, amount of trees planted and message of the most recent donation.
  */
 async function getRecentDonation() {
   const $ = await fetchData();
@@ -108,7 +78,7 @@ async function getRecentDonation() {
     .first()
     .html();
 
-  const result: IDonation = {
+  return {
     name: $(recent)
       .find('strong')
       .text()
@@ -127,6 +97,25 @@ async function getRecentDonation() {
           .text()
       : null,
   };
+}
 
-  return result;
+/**
+ * Get the corresponding teamtrees badge for the amount of trees provided.
+ * @param trees Amount of trees to get badge for.
+ * @returns {string} The badge image key from the application's RPC assets.
+ */
+function getBadge(trees: number) {
+  if (trees < 20) {
+    return 'badge-1';
+  } else if (trees < 50) {
+    return 'badge-2';
+  } else if (trees < 100) {
+    return 'badge-3';
+  } else if (trees < 250) {
+    return 'badge-4';
+  } else if (trees < 1000) {
+    return 'badge-5';
+  }
+
+  return 'badge-6';
 }

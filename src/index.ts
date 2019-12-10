@@ -1,6 +1,6 @@
 import { teamTreesRPC } from './teamtrees';
 
-import * as path from 'path';
+import path from 'path';
 import * as RPC from 'discord-rpc';
 
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env') });
@@ -12,9 +12,14 @@ if (!clientId)
   throw new Error('CLIENTID was not detected. Please include it in .env');
 
 async function setRPC() {
+  const startTime = Date.now();
   const rpc = await teamTreesRPC();
 
   client.setActivity(rpc);
+
+  if (process.env.VERBOSE) {
+    console.log(`Updated Discord RPC in ${Date.now() - startTime}ms`);
+  }
 }
 
 console.log(
@@ -31,10 +36,9 @@ client.on('ready', () => {
 client.login({ clientId });
 
 process.on('unhandledRejection', r => {
-  console.log(r);
+  console.warn(r);
 });
 
-process.on('uncaughtException', e => {
-  console.error(e);
-  process.exit(0);
+process.on('uncaughtException', async e => {
+  console.warn(e);
 });
