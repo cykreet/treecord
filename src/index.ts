@@ -17,7 +17,7 @@ async function setRPC() {
 
   client.setActivity(rpc);
 
-  if (process.env.VERBOSE == 'true') {
+  if (process.env.VERBOSE === 'true') {
     console.log(`Updated Discord RPC in ${Date.now() - startTime}ms`);
   }
 }

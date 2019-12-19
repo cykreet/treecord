@@ -26,7 +26,7 @@ export async function teamTreesRPC() {
         ? donator.message
         : '#teamtrees',
     startTimestamp: startTime,
-    instance: 0,
+    instance: false,
     matchSecret: matchSecret,
     spectateSecret: spectateSecret,
   };
