@@ -17,6 +17,17 @@ $ git clone https://github.com/Cykreet/discord-tt.git
 2. run the following commands:
 ```bash
 # install dependencies
+$ yarn install
+
+# compile typescript to javascript
+$ yarn build
+
+# run compiled index.js
+$ yarn start
+```
+alternatively, if you prefer npm:
+```bash
+# install dependencies
 $ npm install
 
 # compile typescript to javascript
