@@ -1,11 +1,15 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import cheerio from 'cheerio';
 
 import { randomString } from './util';
 
 const matchSecret = randomString(30);
 const spectateSecret = randomString(30);
+
 const startTime = Date.now();
+
+axiosRetry(axios, { retries: 5 });
 
 export async function teamTreesRPC() {
   const donator = await getRecentDonation();
@@ -36,9 +40,13 @@ export async function teamTreesRPC() {
  * Fetch data from teamtrees.org.
  */
 async function fetchData() {
-  return await axios
-    .get('https://teamtrees.org/')
-    .then(r => cheerio.load(r.data));
+  try {
+    return await axios
+      .get('https://teamtrees.org/')
+      .then(r => cheerio.load(r.data));
+  } catch {
+    throw new Error('Faied to fetch data from teamtrees.org');
+  }
 }
 
 /**

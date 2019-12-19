@@ -1,11 +1,11 @@
 import { teamTreesRPC } from './teamtrees';
 
 import path from 'path';
-import * as RPC from 'discord-rpc';
+import { Client } from 'discord-rpc';
 
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env') });
 
-const client = new RPC.Client({ transport: 'ipc' });
+const client = new Client({ transport: 'ipc' });
 const clientId = process.env.CLIENTID;
 
 if (!clientId)
