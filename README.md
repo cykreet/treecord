@@ -11,11 +11,11 @@ simple discord rpc for [teamtrees.org](https://teamtrees.org). this will most li
 ## instructions
 
 1. clone this repository:
-```bash
+```sh
 $ git clone https://github.com/Cykreet/discord-tt.git
 ```
 2. run the following commands:
-```bash
+```sh
 # install dependencies
 $ yarn install
 
@@ -26,7 +26,7 @@ $ yarn build
 $ yarn start
 ```
 alternatively, if you prefer npm:
-```bash
+```sh
 # install dependencies
 $ npm install
 
