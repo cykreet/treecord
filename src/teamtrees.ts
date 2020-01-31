@@ -45,7 +45,7 @@ async function fetchData() {
       .get('https://teamtrees.org/')
       .then(r => cheerio.load(r.data));
   } catch {
-    throw new Error('Faied to fetch data from teamtrees.org');
+    throw new Error('Failed to fetch data from teamtrees.org');
   }
 }
 
