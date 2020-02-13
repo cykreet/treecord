@@ -1,6 +1,6 @@
 # discord-tt
 
-simple discord rpc for [teamtrees.org](https://teamtrees.org). this will most likely break into several million pieces after teamtrees' deadline, so there's that.
+simple discord rpc for [teamtrees.org](https://teamtrees.org). ~~this will most likely break into several million pieces after teamtrees' deadline, so there's that.~~ seems to work fine, for now :)
 
 ![Example-1](/assets/examples/example-1.png)
 
