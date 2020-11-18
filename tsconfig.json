@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "rootDir": "src",
+    "baseUrl": ".",
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "dist"]
+}
