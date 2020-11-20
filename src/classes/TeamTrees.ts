@@ -31,8 +31,10 @@ export default class TeamTrees {
     const $ = this.data;
 
     const recent = $("#recent-donations").children().first();
-    const created = new Date(recent.find(".feed-datetime").text());
-    if (this.latest >= this.latest) return;
+    // ideally we'd scrape the donation dates and
+    // compare them, but that seems like a lot more work :)
+    const date = new Date();
+    if (this.latest >= date) return;
 
     const name = recent.find(".text-spruce").first();
     const badge = recent.find(".badge");
@@ -55,7 +57,7 @@ export default class TeamTrees {
       gift,
     };
 
-    this.latest = created;
+    this.latest = date;
     return donation;
   }
 
