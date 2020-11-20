@@ -16,7 +16,6 @@ export default class Tray {
   }
 
   private update() {
-    console.log("updating");
     const menu = Menu.buildFromTemplate([
       {
         label: `${app.name} v${app.getVersion()}`,
@@ -24,9 +23,7 @@ export default class Tray {
       },
       {
         label:
-          client.user == undefined
-            ? "Connecting..."
-            : `${client.user.username}#${client.user.discriminator}`,
+          client.user == undefined ? "Connecting..." : `${client.user.username}#${client.user.discriminator}`,
         enabled: false,
       },
       {

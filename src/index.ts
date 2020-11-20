@@ -20,8 +20,8 @@ async function fail(e: Error) {
     detail: `${e.message}\n${!app.isPackaged ? e.stack : undefined}`,
   });
 
-  app.exit();
+  app.exit(1);
 }
 
-process.on("unhandledRejection", (e: Error) => fail(e));
-process.on("uncaughtException", (e: Error) => fail(e));
+process.on("unhandledRejection", (e: Error) => fail);
+process.on("uncaughtException", (e: Error) => fail);
