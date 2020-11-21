@@ -2,8 +2,9 @@
   "name": "treecord",
   "productName": "Treecord",
   "version": "0.0.1",
+  "main": "./dist/index.js",
   "repository": {
-    "url": "https://github.com/cykreet/treecord"
+    "url": "github:cykreet/treecord"
   },
   "author": {
     "name": "cykreet",
