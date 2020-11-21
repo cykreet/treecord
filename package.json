@@ -29,7 +29,11 @@
     "got": "^11.8.0"
   },
   "build": {
+    "asar": false,
     "extends": null,
+    "files": [
+      "./dist/**/*"
+    ],
     "appId": "com.cykreet.treecord",
     "win": {
       "target": "portable"
