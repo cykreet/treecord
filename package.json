@@ -29,7 +29,8 @@
     "got": "^11.8.0"
   },
   "build": {
-    "appId": "com.cykreet.${name}",
+    "extends": null,
+    "appId": "com.cykreet.treecord",
     "win": {
       "target": "portable"
     }
