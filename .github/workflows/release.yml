@@ -1,0 +1,21 @@
+name: Release
+
+on: push
+
+jobs:
+  release:
+    name: Build/Release Treecord Electron application
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Node, NPM and Yarn
+        uses: actions/setup-node@v2-beta
+      - name: Build/Release application
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release: true
