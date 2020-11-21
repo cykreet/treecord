@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: refs/heads/electron
       - name: Install Node, NPM and Yarn
         uses: actions/setup-node@v2-beta
       - name: Build/Release application
