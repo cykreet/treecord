@@ -1,20 +1,24 @@
 {
   "name": "treecord",
+  "productName": "Treecord",
   "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/cykreet/treecord"
+  },
   "author": {
     "name": "cykreet",
     "url": "https://github.com/cykreet"
   },
   "scripts": {
     "build": "tsc",
-    "start": "electron dist",
-    "watch": "tsc -w"
+    "watch": "tsc-watch --onSuccess \"electron dist\""
   },
   "license": "MIT",
   "devDependencies": {
     "@types/cheerio": "^0.22.22",
     "@types/discord-rpc": "^3.0.4",
     "electron": "^11.0.0",
+    "electron-builder": "^22.9.1",
     "tsc-watch": "^4.2.9",
     "typescript": "^4.0.5"
   },
@@ -22,5 +26,11 @@
     "cheerio": "^1.0.0-rc.3",
     "discord-rpc": "^3.1.4",
     "got": "^11.8.0"
+  },
+  "build": {
+    "appId": "com.cykreet.${name}",
+    "win": {
+      "target": "portable"
+    }
   }
 }

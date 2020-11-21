@@ -13,6 +13,7 @@ app.once("ready", () => {
 });
 
 async function fail(e: Error) {
+  console.log(e);
   await dialog.showMessageBox({
     type: "error",
     title: app.name,
@@ -23,5 +24,5 @@ async function fail(e: Error) {
   app.exit(1);
 }
 
-process.on("unhandledRejection", (e: Error) => fail);
-process.on("uncaughtException", (e: Error) => fail);
+process.on("unhandledRejection", fail);
+process.on("uncaughtException", fail);

@@ -15,7 +15,7 @@ const client = new Client({ transport: "ipc" });
 
 async function updateActivity(start: Date, teamtrees: TeamTrees) {
   const trees = await teamtrees.totalTrees();
-  const donation = await teamtrees.recentDonation(BADGES);
+  const donation = await teamtrees.recentDonation();
 
   if (donation) {
     client.setActivity({
@@ -35,8 +35,8 @@ async function updateActivity(start: Date, teamtrees: TeamTrees) {
 }
 
 client.once("ready", () => {
-  const teamtrees = new TeamTrees(TEAMTREES_URL);
   const start = new Date();
+  const teamtrees = new TeamTrees(TEAMTREES_URL, BADGES);
 
   updateActivity(start, teamtrees);
 });

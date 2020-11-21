@@ -14,19 +14,21 @@ export interface Badges {
 }
 
 export default class TeamTrees {
-  protected readonly url: string;
-  protected data: cheerio.Root;
-  protected latest: Date;
+  private readonly url: string;
+  private data: cheerio.Root;
+  private latest: Date;
+  private badges: [string, string][];
 
-  constructor(url: string) {
+  constructor(url: string, badges: Badges) {
     this.url = url;
+    this.badges = this.cleanBadges(badges);
   }
 
   private async fetch() {
     this.data = await got(this.url, { resolveBodyOnly: true }).then((r) => cheerio.load(r));
   }
 
-  async recentDonation(badges: Badges): Promise<Donation> {
+  async recentDonation(): Promise<Donation> {
     if (!this.data) await this.fetch();
     const $ = this.data;
 
@@ -44,9 +46,13 @@ export default class TeamTrees {
     const message = name.next().text();
 
     let treeBadge: string;
-    for (const [key, value] of Object.entries(badges).sort(([a], [b]) => +b - +a)) {
-      // todo: default case
-      if (trees < +key) treeBadge = value;
+    for (const [key, value] of this.badges) {
+      if (trees < +key) {
+        treeBadge = value;
+        continue;
+      }
+
+      if (!treeBadge) treeBadge = value;
     }
 
     const donation: Donation = {
@@ -66,6 +72,10 @@ export default class TeamTrees {
     const $ = this.data;
 
     return +$("#totalTrees").attr("data-count");
+  }
+
+  private cleanBadges(badges: Badges) {
+    return Object.entries(badges).sort(([a], [b]) => +b - +a);
   }
 
   clear() {
