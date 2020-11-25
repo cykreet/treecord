@@ -1,5 +1,7 @@
 import { Client } from "discord-rpc";
+import { failed } from "./";
 import TeamTrees, { Badges } from "./classes/TeamTrees";
+import { truncateString } from "./util";
 
 const TEAMTREES_URL = "https://teamtrees.org";
 const BADGES: Badges = {
@@ -11,19 +13,21 @@ const BADGES: Badges = {
   0: "badge-earth",
 };
 
+export let currentTimeout: NodeJS.Timeout;
 const client = new Client({ transport: "ipc" });
 
 async function updateActivity(start: Date, teamtrees: TeamTrees) {
   const trees = await teamtrees.totalTrees();
   const donation = await teamtrees.recentDonation();
-
   if (donation) {
     client.setActivity({
       details: `${trees} trees planted`,
       largeImageKey: donation.badge,
-      largeImageText: `${donation.name} planted ${donation.trees} tree${donation.trees > 1 ? "s" : ""}!`,
+      largeImageText: `${truncateString(donation.name, 50)} planted ${donation.trees} tree${
+        donation.trees > 1 ? "s" : ""
+      }!`,
       smallImageKey: "icon",
-      smallImageText: donation.message ?? "#teamtrees",
+      smallImageText: (donation.message.length > 2 && truncateString(donation.message, 40)) ?? "#teamtrees",
       startTimestamp: start,
     });
 
@@ -31,7 +35,7 @@ async function updateActivity(start: Date, teamtrees: TeamTrees) {
   }
 
   const timeout = !!process.env.TIMEOUT ? +process.env.TIMEOUT : 15000; // 15s
-  setTimeout(() => updateActivity(start, teamtrees), timeout);
+  if (!failed) currentTimeout = setTimeout(() => updateActivity(start, teamtrees), timeout);
 }
 
 client.once("ready", () => {

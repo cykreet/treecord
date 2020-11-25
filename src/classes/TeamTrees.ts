@@ -55,16 +55,13 @@ export default class TeamTrees {
       if (!treeBadge) treeBadge = value;
     }
 
-    const donation: Donation = {
+    return {
       name: name.text().trim(),
       message: message[0] ? message.trim() : undefined,
       badge: treeBadge,
       trees,
       gift,
     };
-
-    this.latest = date;
-    return donation;
   }
 
   async totalTrees(): Promise<number> {

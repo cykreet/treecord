@@ -1,6 +1,9 @@
 name: Release
 
-on: push
+on:
+  create:
+    tags:
+      - v*
 
 jobs:
   release:
@@ -16,8 +19,11 @@ jobs:
           ref: refs/heads/electron
       - name: Install Node, NPM and Yarn
         uses: actions/setup-node@v2-beta
-      - name: Build/Release application
+      - name: Build/Release
         uses: samuelmeuli/action-electron-builder@v1
         with:
+          # todo: automated release notes along with
+          # actually releasing the build instead of drafting it
+          # args: -c.releaseInfo.releaseNotes="release notes here"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release: true

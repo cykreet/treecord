@@ -1,28 +1,30 @@
 import { app, dialog } from "electron";
 import Tray from "./classes/Tray";
-import client from "./client";
+import client, { currentTimeout } from "./client";
 
+export let failed: boolean;
 let tray: Tray;
+
 if (!app.requestSingleInstanceLock()) app.quit();
 
 app.once("ready", () => {
   tray = new Tray();
-
-  const clientId = process.env.CLIENT_ID ?? "758984984085790720";
-  client.login({ clientId });
+  client.login({ clientId: process.env.CLIENT_ID ?? "758984984085790720" });
 });
 
 async function fail(e: Error) {
-  console.log(e);
+  failed = true;
+  clearTimeout(currentTimeout);
+
   await dialog.showMessageBox({
-    type: "error",
     title: app.name,
-    message: "something un-epic happened :(",
-    detail: `${e.message}\n${!app.isPackaged ? e.stack : undefined}`,
+    message: "something isn't right ┌( ಠ_ಠ)┘",
+    detail: `${e.message}\n${!app.isPackaged ? e.stack : ""}`,
+    type: "error",
   });
 
   app.exit(1);
 }
 
-process.on("unhandledRejection", fail);
-process.on("uncaughtException", fail);
+process.on("uncaughtException", (e: Error) => fail(e));
+process.on("unhandledRejection", (e: Error) => fail(e));

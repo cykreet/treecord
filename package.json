@@ -29,14 +29,13 @@
     "got": "^11.8.0"
   },
   "build": {
-    "asar": false,
+    "appId": "com.cykreet.${name}",
     "extends": null,
-    "files": [
-      "./dist/**/*"
-    ],
-    "appId": "com.cykreet.discord-tt",
     "win": {
       "target": "portable"
-    }
+    },
+    "files": [
+      "./dist/**/*"
+    ]
   }
 }
