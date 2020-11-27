@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:electron": "electron-builder",
     "watch": "tsc-watch --onSuccess \"electron dist\""
   },
   "license": "MIT",
@@ -31,11 +32,18 @@
   "build": {
     "appId": "com.cykreet.${name}",
     "extends": null,
+    "directories": {
+      "buildResources": "./assets/icons",
+      "output": "app"
+    },
     "win": {
-      "target": "portable"
+      "artifactName": "${productName}.${ext}",
+      "target": "portable",
+      "icon": "icon.png"
     },
     "files": [
-      "./dist/**/*"
+      "./dist/**/*",
+      "./assets/icons/**/*"
     ]
   }
 }

@@ -1,4 +1,4 @@
-name: Release
+name: Build/Release
 
 on:
   create:
@@ -7,18 +7,24 @@ on:
 
 jobs:
   release:
-    name: Build/Release Treecord Electron application
+    name: Build/Release Electron application
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        # todo: linux/macos build
         os: [windows-latest]
+        node-version: [12.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: refs/heads/electron
-      - name: Install Node, NPM and Yarn
-        uses: actions/setup-node@v2-beta
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn install
       - name: Build/Release
         uses: samuelmeuli/action-electron-builder@v1
         with:

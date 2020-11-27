@@ -6,7 +6,7 @@ export default class Tray {
   tray: ElectronTray;
 
   constructor() {
-    this.tray = new ElectronTray(join(__dirname, "../../assets/icon.png"));
+    this.tray = new ElectronTray(join(__dirname, "../../assets/icons/tray/32x32.png"));
     this.tray.setToolTip(app.name);
     this.tray.setTitle(app.name);
 
@@ -19,6 +19,7 @@ export default class Tray {
     const menu = Menu.buildFromTemplate([
       {
         label: `${app.name} v${app.getVersion()}`,
+        icon: join(__dirname, "../../assets/icons/tray/16x16.png"),
         enabled: false,
       },
       {

@@ -1,3 +1,6 @@
+# Electron application output directory
+app/
+
 # Logs
 logs
 *.log
