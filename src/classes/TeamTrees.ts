@@ -5,7 +5,6 @@ export interface Donation {
   name: string;
   trees: number;
   badge: string;
-  gift: boolean;
   message?: string;
 }
 
@@ -41,8 +40,6 @@ export default class TeamTrees {
     const name = recent.find(".text-spruce").first();
     const badge = recent.find(".badge");
     const trees = parseInt(badge.text());
-    // todo: fix
-    const gift = !!badge.remove("#text").last();
     const message = name.next().text();
 
     let treeBadge: string;
@@ -60,7 +57,6 @@ export default class TeamTrees {
       message: message[0] ? message.trim() : undefined,
       badge: treeBadge,
       trees,
-      gift,
     };
   }
 
