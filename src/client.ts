@@ -21,13 +21,14 @@ async function updateActivity(start: Date, teamtrees: TeamTrees) {
   const donation = await teamtrees.recentDonation();
   if (donation) {
     client.setActivity({
-      details: `${trees} trees planted`,
+      details: `${trees.toLocaleString()} trees planted`,
+      state: "$1 plants a tree",
       largeImageKey: donation.badge,
-      largeImageText: `${truncateString(donation.name, 50)} planted ${donation.trees} tree${
+      largeImageText: `${truncateString(donation.name, 50)} planted ${donation.trees.toLocaleString()} tree${
         donation.trees > 1 ? "s" : ""
       }!`,
       smallImageKey: "icon",
-      smallImageText: (donation.message.length > 2 && truncateString(donation.message, 40)) ?? "#teamtrees",
+      smallImageText: donation.message?.length > 2 ? truncateString(donation.message, 40) : "teamtrees.org",
       startTimestamp: start,
     });
 
