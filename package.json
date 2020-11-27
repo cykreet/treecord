@@ -37,7 +37,6 @@
       "output": "app"
     },
     "win": {
-      "artifactName": "${productName}.${ext}",
       "target": "portable",
       "icon": "icon.png"
     },
