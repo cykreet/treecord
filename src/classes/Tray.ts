@@ -3,6 +3,7 @@ import { join } from "path";
 import client from "../client";
 
 export default class Tray {
+  private menu: Menu;
   tray: ElectronTray;
 
   constructor() {
@@ -10,13 +11,12 @@ export default class Tray {
     this.tray.setToolTip(app.name);
     this.tray.setTitle(app.name);
 
-    this.tray.setIgnoreDoubleClickEvents(true);
-    // todo: only triggers once
-    this.tray.on("right-click", () => this.update());
+    this.update();
+    this.menu.on("menu-will-show", () => this.update());
   }
 
   private update() {
-    const menu = Menu.buildFromTemplate([
+    this.menu = Menu.buildFromTemplate([
       {
         label: `${app.name} v${app.getVersion()}`,
         icon: join(__dirname, "../../assets/icons/tray/16x16.png"),
@@ -43,6 +43,6 @@ export default class Tray {
       },
     ]);
 
-    this.tray.setContextMenu(menu);
+    this.tray.setContextMenu(this.menu);
   }
 }
