@@ -36,12 +36,16 @@
       "buildResources": "./assets/icons",
       "output": "app"
     },
+    "build": {},
     "win": {
       "target": "portable",
       "icon": "icon.png",
-      "publish": {
-        "releaseType": "release"
-      }
+      "publish": [
+        {
+          "provider": "github",
+          "releaseType": "release"
+        }
+      ]
     },
     "files": [
       "./dist/**/*",
