@@ -1,9 +1,11 @@
 name: Build/Release
 
 on:
-  push:
+  create:
     tags:
       - v*
+
+  workflow_dispatch:
 
 jobs:
   release:
