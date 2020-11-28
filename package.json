@@ -39,7 +39,9 @@
     "win": {
       "target": "portable",
       "icon": "icon.png",
-      "releaseType": "release"
+      "publish": {
+        "releaseType": "release"
+      }
     },
     "files": [
       "./dist/**/*",
