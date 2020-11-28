@@ -45,4 +45,4 @@ jobs:
         run: yarn run electron-builder --${{ steps.platform.outputs.lowercase }} --publish always -c.releaseInfo.releaseNotes="${{ steps.changelog.outputs.changelog }}"s
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EP_PRE_RELEASE: ${{ startsWith( ${GITHUB_REF:10}, 0 ) }}
+          EP_PRE_RELEASE: ${{ startsWith( ${GITHUB_REF:10}, v0 ) }}
