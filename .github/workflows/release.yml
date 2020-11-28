@@ -39,8 +39,10 @@ jobs:
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ runner.os }}
+      - name: Set Version
+        run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
       - name: Build/Release Electron Application
         run: yarn run electron-builder --${{ steps.platform.outputs.lowercase }} --publish always -c.releaseInfo.releaseNotes="${{ steps.changelog.outputs.changelog }}"s
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EP_PRE_RELEASE: ${{ startsWith( ${github.ref}, v0 ) }}
+          EP_PRE_RELEASE: ${{ startsWith( $RELEASE_VERSION, v0 ) }}
