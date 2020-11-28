@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    name: Build/Release Electron application
+    name: Build/Release Electron Application
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -23,13 +23,26 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
+      - name: Install Dependencies
         run: yarn install
-      - name: Build/Release
-        uses: samuelmeuli/action-electron-builder@v1
+      - name: Compile Typescript
+        run: yarn build
+      - name: Generate Changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v0.4.4
         with:
-          # todo: automated release notes along with
-          # actually releasing the build instead of drafting it
-          # args: -c.releaseInfo.releaseNotes="release notes here"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: true
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+      # not epic, but necessary
+      - name: Get Platform
+        id: platform
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ runner.os }}
+      - name: Get Version
+        id: version
+        uses: martinbeentjes/npm-get-version-action@master
+      - name: Build/Release Electron Application
+        run: yarn run electron-builder --${{ steps.platform.outputs.lowercase }} --publish always -c.releaseInfo.releaseNotes="${{ steps.changelog.outputs.changelog }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EP_PRE_RELEASE: ${{ startsWith( steps.version.outputs.current-version, 0 ) }}

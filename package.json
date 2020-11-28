@@ -1,7 +1,7 @@
 {
   "name": "treecord",
   "productName": "Treecord",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "main": "./dist/index.js",
   "repository": {
     "url": "github:cykreet/discord-tt"
@@ -38,7 +38,8 @@
     },
     "win": {
       "target": "portable",
-      "icon": "icon.png"
+      "icon": "icon.png",
+      "releaseType": "release"
     },
     "files": [
       "./dist/**/*",
