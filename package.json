@@ -36,7 +36,6 @@
       "buildResources": "./assets/icons",
       "output": "app"
     },
-    "build": {},
     "win": {
       "target": "portable",
       "icon": "icon.png",
