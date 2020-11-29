@@ -11,13 +11,19 @@
     <a href="https://www.electronjs.org">Electron</a> application.
   </h4>
   
-  <a href="/releases">Download (Pre-Release)</a>
+  <a href="https://github.com/cykreet/treecord/releases">Download (Pre-Release)</a>
 
 <i>(windows release only, compatibility with other operating systems is planned)</i>
 
-  <img src="./assets/examples/presence.png" alt="Presence" />
-  <img src="./assets/examples/donation-user.png" alt="Donation User" />
-  <img src="./assets/examples/donation-message.png" alt="Donation Message" />
+  <p>
+    <img src="./assets/examples/presence.png" alt="Presence" />
+  </p>
+  <p>
+    <img src="./assets/examples/donation-user.png" alt="Donation User" />
+  </p>
+  <p>
+    <img src="./assets/examples/donation-message.png" alt="Donation Message" />
+  </p>
 </div>
 
 ## Usage
