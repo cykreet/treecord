@@ -1,30 +1,15 @@
-<h1 align="center">
-  <img src="./assets/icons/icon.png" width="125" alt="Treecord Logo" />
-  <br />
+<h1>
+  <img src="./assets/icons/icon.png" width="25" />
   Treecord
-  <br />
 </h1>
 
-<div align="center">
-  <h4>
-    Discord <a href="https://teamtrees.org">teamtrees.org</a> rich presence built into a portable
-    <a href="https://www.electronjs.org">Electron</a> application.
-  </h4>
-  
-  <a href="https://github.com/cykreet/treecord/releases">Download (Pre-Release)</a>
+Discord <a href="https://teamtrees.org">teamtrees.org</a> rich presence built into a portable <a href="https://electronjs.org">Electron</a> application.
 
 <i>(windows release only, compatibility with other operating systems is planned)</i>
 
-  <p>
-    <img src="./assets/examples/presence.png" alt="Presence" />
-  </p>
-  <p>
-    <img src="./assets/examples/donation-user.png" alt="Donation User" />
-  </p>
-  <p>
-    <img src="./assets/examples/donation-message.png" alt="Donation Message" />
-  </p>
-</div>
+[Download (Pre-Release)](https://github.com/cykreet/treecord/releases)
+
+![Donation User](./assets/examples/donation-user.png)
 
 ## Usage
 
