@@ -1,0 +1,6 @@
+{
+  "name": "@treecord/application",
+  "version": "0.9.1",
+  "main": "./dist/index.js",
+  "license": "MIT"
+}

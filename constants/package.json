@@ -1,0 +1,14 @@
+{
+  "name": "@treecord/constants",
+  "version": "0.9.1",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/dotenv-safe": "^8.1.1",
+    "@types/node": "^14.14.37"
+  },
+  "dependencies": {
+    "dotenv-safe": "^8.2.0",
+    "find-up": "^5.0.0"
+  }
+}

@@ -1,54 +1,21 @@
 {
   "name": "treecord",
-  "productName": "Treecord",
-  "version": "0.8.2",
-  "main": "./dist/index.js",
+  "version": "0.9.1",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "api",
+      "application",
+      "constants"
+    ]
+  },
   "repository": {
-    "url": "github:cykreet/discord-tt"
+    "type": "git",
+    "url": "github:cykreet/treecord"
   },
   "author": {
     "name": "cykreet",
     "url": "https://github.com/cykreet"
-  },
-  "scripts": {
-    "build": "tsc",
-    "build:electron": "electron-builder",
-    "watch": "tsc-watch --onSuccess \"electron dist\""
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/cheerio": "^0.22.22",
-    "@types/discord-rpc": "^3.0.4",
-    "electron": "^11.1.0",
-    "electron-builder": "^22.9.1",
-    "tsc-watch": "^4.2.9",
-    "typescript": "^4.0.5"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "discord-rpc": "^3.1.4",
-    "got": "^11.8.0"
-  },
-  "build": {
-    "appId": "com.cykreet.${name}",
-    "extends": null,
-    "directories": {
-      "buildResources": "./assets/icons",
-      "output": "app"
-    },
-    "win": {
-      "target": "portable",
-      "icon": "icon.png",
-      "publish": [
-        {
-          "provider": "github",
-          "releaseType": "release"
-        }
-      ]
-    },
-    "files": [
-      "./dist/**/*",
-      "./assets/icons/**/*"
-    ]
   }
 }
