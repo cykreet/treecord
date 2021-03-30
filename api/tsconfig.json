@@ -9,7 +9,7 @@
   },
   "references": [
     {
-      "path": "../constants"
+      "path": "../common"
     }
   ]
 }

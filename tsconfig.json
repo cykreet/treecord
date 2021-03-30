@@ -5,6 +5,7 @@
     "strict": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "removeComments": true,
     "baseUrl": ".",
     "outDir": "dist"
@@ -17,7 +18,7 @@
       "path": "application"
     },
     {
-      "path": "constants"
+      "path": "common"
     }
   ]
 }
