@@ -5,7 +5,9 @@ export const LOGGER_OPTIONS: ISettingsParam = {
   displayFilePath: "hidden",
   displayFunctionName: false,
   colorizePrettyLogs: IS_DEVELOPMENT,
-  dateTimeTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone, // local timezone
+  exposeErrorCodeFrame: IS_DEVELOPMENT,
+  minLevel: IS_DEVELOPMENT ? "trace" : "info",
+  prettyInspectHighlightStyles: { string: "green" },
 };
 
 export class Logger extends TSLogger {
