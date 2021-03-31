@@ -6,8 +6,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 export const NODE_ENV = process.env.NODE_ENV;
-export const CLIENT_ID = process.env.CLIENT_ID;
 export const IS_DEVELOPMENT = NODE_ENV === "development";
 export const IS_PRODUCTION = NODE_ENV === "production";
 
-export const API_PORT = +(process.env.API_PORT ?? 9000);
+// could pull repo url from package.json
+export const REPO_URL = process.env.REPO_URL ?? "https://github.com/cykreet/treecord";
