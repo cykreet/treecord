@@ -15,5 +15,5 @@ export class Logger extends TSLogger {
     super(Object.assign(LOGGER_OPTIONS, settings), parentSettings);
   }
 
-  log = (...args: any[]): ILogObject => super.info(...args);
+  log = (...args: any[]): ILogObject => this.info(...args);
 }

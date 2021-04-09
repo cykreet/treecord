@@ -1,9 +1,19 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, UseInterceptors } from "@nestjs/common";
+import { RedisCacheInterceptor } from "../../interceptors/RedisCacheInterceptor";
+import { TreesService } from "./trees.service";
 
+@UseInterceptors(
+  new RedisCacheInterceptor({
+    namespace: "totalTrees",
+    expirySeconds: 60,
+  })
+)
 @Controller("trees")
 export class TreesController {
-  private static readonly TOTAL_TREES_REGEX = /<[a-z]\w+ id="[A-z]\w+" data-count="(?<trees>\d+)" class="(?=.*counter).*">(\d{1,3}(,\d{3})*)<\/[a-z]\w+>/gi;
+  constructor(private treesService: TreesService) {}
 
   @Get()
-  getTotalTrees() {}
+  async getTotalTrees() {
+    return this.treesService.getTotalTrees();
+  }
 }

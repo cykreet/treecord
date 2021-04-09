@@ -1,7 +1,9 @@
 {
   "name": "treecord",
   "version": "0.9.1",
-  "license": "MIT",
+  "license": "GPL-3.0",
+  "repository": "github:cykreet/treecord.git",
+  "author": "cykreet (https://github.com/cykreet)",
   "private": true,
   "workspaces": {
     "packages": [
@@ -10,12 +12,10 @@
       "common"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "github:cykreet/treecord"
+  "scripts": {
+    "clean": "rimraf ./*/{dist,tsconfig.tsbuildinfo,yarn-error.log}"
   },
-  "author": {
-    "name": "cykreet",
-    "url": "https://github.com/cykreet"
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }

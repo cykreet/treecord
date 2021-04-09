@@ -1,9 +1,10 @@
 import { Module } from "@nestjs/common";
-import { DonationsModule } from "./donations/donations.module";
-import { TreesModule } from "./trees/trees.module";
+import { DataModule } from "./data/data.module";
+import { DonationsModule } from "./donations";
+import { TreesModule } from "./trees";
 
 @Module({
-  imports: [TreesModule, DonationsModule],
+  imports: [DataModule, TreesModule, DonationsModule],
   controllers: [],
   providers: [],
 })
