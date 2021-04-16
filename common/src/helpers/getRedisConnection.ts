@@ -1,5 +1,5 @@
-import { Logger } from "@treecord/common";
 import Redis from "ioredis";
+import { Logger } from "../classes/Logger";
 import { REDIS_URI } from "../constants";
 
 let connection: Redis.Redis;

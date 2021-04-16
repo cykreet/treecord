@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import cheerio from "cheerio";
 import fetch from "node-fetch";
-import { RedisCache } from "../../caches/RedisCache";
+import { RedisCache } from "@treecord/common";
 import { TEAMTREES } from "../../constants";
 
 @Injectable()

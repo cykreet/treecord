@@ -1,14 +1,16 @@
 import { CallHandler, ExecutionContext, NestInterceptor } from "@nestjs/common";
-import { FastifyReply, FastifyRequest } from "fastify";
+import { RedisCache } from "@treecord/common";
+import { FastifyRequest } from "fastify";
 import { Observable, of } from "rxjs";
-import { map, tap } from "rxjs/operators";
-import { RedisCache } from "../caches/RedisCache";
+import { tap } from "rxjs/operators";
 
 export interface RedisCacheInterceptorOptions {
   namespace: string;
   expirySeconds?: number;
 }
 
+// todo: move to memory cache and create decorator for redis cache to be used
+// on individual service functions
 export class RedisCacheInterceptor implements NestInterceptor {
   private readonly redisCache: RedisCache<any>;
 
@@ -19,13 +21,13 @@ export class RedisCacheInterceptor implements NestInterceptor {
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request: FastifyRequest = context.switchToHttp().getRequest();
     const pathArray = request.routerPath.split("/");
-    const value = pathArray[0] ? pathArray[pathArray.length] : "value";
-    const cached = await this.redisCache.get(value);
+    const key = pathArray[0] ? pathArray[pathArray.length] : "value";
+    const cached = await this.redisCache.get(key);
     if (cached) return of(cached);
 
     return next.handle().pipe(
       tap((data) => {
-        this.redisCache.set(value, data);
+        this.redisCache.set(key, data);
       })
     );
   }
