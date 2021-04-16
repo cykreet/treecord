@@ -9,8 +9,7 @@ export interface RedisCacheInterceptorOptions {
   expirySeconds?: number;
 }
 
-// todo: move to memory cache and create decorator for redis cache to be used
-// on individual service functions
+// todo: move to memory cache
 export class RedisCacheInterceptor implements NestInterceptor {
   private readonly redisCache: RedisCache<any>;
 

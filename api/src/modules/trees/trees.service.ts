@@ -9,7 +9,6 @@ export class TreesService {
   async getTotalTrees(): Promise<Trees> {
     const $ = await this.dataService.fetchBody();
     const trees = $("#totalTrees").attr("data-count");
-    // todo: should probably be automatically reported through a service like sentry
     if (!trees) throw new InternalServerErrorException();
     return { trees: +trees };
   }

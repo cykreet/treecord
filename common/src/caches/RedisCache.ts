@@ -1,5 +1,6 @@
 import { getRedisConnection } from "../helpers";
 
+// todo: drop in favour of upcoming sylo digital caches library
 export class RedisCache<Type> {
   private readonly namespace: string;
   private readonly expirySeconds: number | undefined;
