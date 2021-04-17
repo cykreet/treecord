@@ -1,13 +1,7 @@
-import { Controller, Get, UseInterceptors } from "@nestjs/common";
-import { RedisCacheInterceptor } from "../../interceptors/RedisCacheInterceptor";
+import { CacheInterceptor, Controller, Get, UseInterceptors } from "@nestjs/common";
 import { TreesService } from "./trees.service";
 
-@UseInterceptors(
-  new RedisCacheInterceptor({
-    namespace: "totalTrees",
-    expirySeconds: 60,
-  })
-)
+@UseInterceptors(CacheInterceptor)
 @Controller("trees")
 export class TreesController {
   constructor(private treesService: TreesService) {}

@@ -1,3 +1,3 @@
-export interface Trees {
+export interface APITrees {
   trees: number;
 }

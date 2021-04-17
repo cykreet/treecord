@@ -1,5 +1,5 @@
-import { Logger } from "@treecord/common";
-import { Donation as APIDonation, Trees as APITrees } from "@treecord/api";
+import { APIDonation, APITrees } from "@treecord/api";
+import { Logger } from "tslog";
 
 export namespace treecord {
   export interface Options {

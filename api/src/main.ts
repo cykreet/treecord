@@ -5,7 +5,7 @@ import { Logger } from "@treecord/common";
 import fastifyHelmet from "fastify-helmet";
 import fastifyRateLimit from "fastify-rate-limit";
 import { API_PORT } from "./constants";
-import { HttpExceptionFilter } from "./filters/HttpExceptionFilter";
+import { HttpExceptionFilter } from "./filters/http-exception.filter";
 import { AppModule } from "./modules/app.module";
 
 async function bootstrap() {

@@ -1,1 +1,1 @@
-export { Donation, DonationUser, Trees } from "./modules";
+export { APIDonation, APIDonationUser, APITrees } from "./modules";

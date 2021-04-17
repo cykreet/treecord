@@ -1,22 +1,22 @@
 import { Injectable } from "@nestjs/common";
 import { DataService } from "../data";
-import { Donation } from "./donations.types";
+import { APIDonation } from "./donations.types";
 
 @Injectable()
 export class DonationsService {
   constructor(private dataService: DataService) {}
 
-  async getRecentDonations(limit: number = 5) {
+  async getRecentDonations(limit: number = 5): Promise<APIDonation[]> {
     const $ = await this.dataService.fetchBody();
     const recentDonations = $("#recent-donations").children();
-    let donations: Donation[] = [];
+    let donations: APIDonation[] = [];
     recentDonations.each((i, element) => {
-      // breaks the loop
+      // breaks out of the loop
       if (i >= limit) return false;
       const name = $(element).find(".text-spruce");
       const team = $(element).find(".text-lightMoss").text();
       const badge = $(element).find(".badge");
-      const trees = badge.text();
+      const trees = this.cleanTrees(badge.text());
       const message = name.next().text();
       const donatedAt = $(element).find(".feed-datetime").text();
 
@@ -35,15 +35,15 @@ export class DonationsService {
     return donations;
   }
 
-  async getTopDonations(limit: number = 5) {
+  async getTopDonations(limit: number = 5): Promise<APIDonation[]> {
     const $ = await this.dataService.fetchBody();
     const topDonations = $("#top-donations").children();
-    let donations: Donation[] = [];
+    let donations: APIDonation[] = [];
     topDonations.each((i, element) => {
       if (i >= limit) return false;
       const name = $(element).find(".leader-card__name").text();
       const team = $(element).find(".leader-card__team").text();
-      const trees = $(element).attr("data-trees-top")!;
+      const trees = this.cleanTrees($(element).attr("data-trees-top")!);
       const message = $(element).find(".leader-card__message").text();
       const donatedAt = $(element).find(".leader-card__date").text();
 
@@ -62,5 +62,9 @@ export class DonationsService {
     });
 
     return donations;
+  }
+
+  private cleanTrees(input: string) {
+    return input.replace("trees", "");
   }
 }

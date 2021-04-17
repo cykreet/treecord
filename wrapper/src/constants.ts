@@ -1,5 +1,7 @@
-export const API_HOST = process.env.API_HOST!;
+export const API_HOST = "https://treecord.cykreet.com";
 
-export const TOTAL_TREES_ENDPOINT = "/trees";
-export const RECENT_DONATIONS_ENDPOINT = "/donations/recent";
-export const TOP_DONATIONS_ENDPOINT = "/donations/top";
+export enum Endpoints {
+  TOTAL_TREES = "/trees",
+  RECENT_DONATIONS = "/donations/recent",
+  TOP_DONATIONS = "/donations/top",
+}

@@ -1,14 +1,7 @@
-import { Controller, Get, Query, UseInterceptors } from "@nestjs/common";
-import { RedisCacheInterceptor } from "../../interceptors/RedisCacheInterceptor";
+import { CacheInterceptor, Controller, Get, Query, UseInterceptors } from "@nestjs/common";
 import { DonationsService } from "./donations.service";
 
-// todo: current caching will absolutely demolish endpoint queries
-@UseInterceptors(
-  new RedisCacheInterceptor({
-    namespace: "donations",
-    expirySeconds: 2 * 60,
-  })
-)
+@UseInterceptors(CacheInterceptor)
 @Controller("donations")
 export class DonationsController {
   constructor(private donationsService: DonationsService) {}
