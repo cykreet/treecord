@@ -3,6 +3,8 @@
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "composite": true,
+    "sourceMap": true,
+    "declaration": true,
     "rootDir": "src",
     "outDir": "dist"
   },

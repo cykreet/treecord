@@ -7,7 +7,7 @@ export class TreesController {
   constructor(private treesService: TreesService) {}
 
   @Get()
-  async getTotalTrees() {
+  public async getTotalTrees() {
     return this.treesService.getTotalTrees();
   }
 }

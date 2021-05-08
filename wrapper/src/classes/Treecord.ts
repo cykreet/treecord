@@ -1,5 +1,5 @@
 import { Logger } from "tslog";
-import { API_HOST, Endpoints } from "../constants";
+import { API_HOST, Endpoint } from "../constants";
 import { fetchEndpoint } from "../helpers/fetchEndpoint";
 import { treecord } from "../types";
 
@@ -14,28 +14,33 @@ export class Treecord {
 
   public async getTotalTrees(): Promise<treecord.Trees> {
     this.logger?.debug("Fetching total trees.");
-    const response = await fetchEndpoint(this.host, Endpoints.TOTAL_TREES);
-    const trees: treecord.Trees = await response.json();
-    return trees;
+    const response = await fetchEndpoint(this.host, Endpoint.TOTAL_TREES);
+    const body = await response.json();
+    return body as treecord.Trees;
   }
 
   public async getRecentDonations(limit: number): Promise<treecord.Donation[]> {
     this.logger?.debug("Fetching recent donations.");
-    const params = new URLSearchParams();
-    if (limit) params.set("limit", limit.toString());
-
-    const response = await fetchEndpoint(this.host, Endpoints.RECENT_DONATIONS, { body: params });
-    const donations: treecord.Donation[] = await response.json();
-    return donations;
+    return this.fetchDonations(Endpoint.TOP_DONATIONS, {
+      name: "limit",
+      value: limit,
+    });
   }
 
   public async getTopDonations(limit: number): Promise<treecord.Donation[]> {
     this.logger?.debug("Fetching top donations.");
-    const params = new URLSearchParams();
-    if (limit) params.set("limit", limit.toString());
+    return this.fetchDonations(Endpoint.TOP_DONATIONS, {
+      name: "limit",
+      value: limit,
+    });
+  }
 
-    const response = await fetchEndpoint(this.host, Endpoints.TOP_DONATIONS, { body: params });
-    const donations: treecord.Donation[] = await response.json();
-    return donations;
+  private async fetchDonations(endpoint: string, ...params: { name: string; value: any }[]): Promise<treecord.Donation[]> {
+    const searchParams = new URLSearchParams();
+    params.forEach((p) => searchParams.set(p.name, p.value));
+
+    const response = await fetchEndpoint(this.host, endpoint, { body: searchParams });
+    const body = await response.json();
+    return body as treecord.Donation[];
   }
 }

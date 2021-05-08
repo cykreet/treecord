@@ -6,8 +6,8 @@ import { APITrees } from "./trees.types";
 export class TreesService {
   constructor(private dataService: DataService) {}
 
-  async getTotalTrees(): Promise<APITrees> {
-    const $ = await this.dataService.fetchBody();
+  public async getTotalTrees(): Promise<APITrees> {
+    const $ = await this.dataService.loadBody();
     const trees = $("#totalTrees").attr("data-count");
     if (!trees) throw new InternalServerErrorException();
     return { trees: +trees };

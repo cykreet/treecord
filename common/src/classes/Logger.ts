@@ -1,21 +1,21 @@
-import { ILogObject, ISettings, ISettingsParam, Logger as TSLogger } from "tslog";
+import { ILogObject, ISettingsParam, Logger as TSLogger } from "tslog";
 import { IS_DEVELOPMENT } from "../constants";
-
-export const LOGGER_OPTIONS: ISettingsParam = {
-  displayFilePath: "hidden",
-  displayFunctionName: false,
-  colorizePrettyLogs: IS_DEVELOPMENT,
-  exposeErrorCodeFrame: IS_DEVELOPMENT,
-  minLevel: IS_DEVELOPMENT ? "trace" : "info",
-  prettyInspectHighlightStyles: { string: "green" },
-};
 
 // todo: nest doesn't play nice and throws a bunch of extra
 // shit at the logger, so it should be filtered out
 export class Logger extends TSLogger {
-  constructor(settings?: ISettingsParam, parentSettings?: ISettings) {
-    super(Object.assign(LOGGER_OPTIONS, settings), parentSettings);
+  private static readonly DEFAULT_OPTIONS: ISettingsParam = {
+    displayFilePath: "hidden",
+    colorizePrettyLogs: IS_DEVELOPMENT,
+    exposeErrorCodeFrame: IS_DEVELOPMENT,
+    minLevel: IS_DEVELOPMENT ? "trace" : "info",
+    prettyInspectHighlightStyles: { string: "green" },
+    dateTimePattern: IS_DEVELOPMENT ? "hour:minute:second.millisecond" : undefined,
+  };
+
+  constructor(name?: string, settings?: Omit<ISettingsParam, "name">) {
+    super(Object.assign(Logger.DEFAULT_OPTIONS, name, settings));
   }
 
-  log = (...args: any[]): ILogObject => this.info(...args);
+  public log = (...args: any[]): ILogObject => this.info(...args);
 }

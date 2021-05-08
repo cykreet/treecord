@@ -7,12 +7,12 @@ export class DonationsController {
   constructor(private donationsService: DonationsService) {}
 
   @Get("top")
-  async getTopDonations(@Query("limit") limit: number) {
+  public async getTopDonations(@Query("limit") limit: number) {
     return this.donationsService.getTopDonations(limit);
   }
 
   @Get("recent")
-  async getRecentDonations(@Query("limit") limit: number) {
+  public async getRecentDonations(@Query("limit") limit: number) {
     return this.donationsService.getRecentDonations(limit);
   }
 }

@@ -6,8 +6,8 @@ import { APIDonation } from "./donations.types";
 export class DonationsService {
   constructor(private dataService: DataService) {}
 
-  async getRecentDonations(limit: number = 5): Promise<APIDonation[]> {
-    const $ = await this.dataService.fetchBody();
+  public async getRecentDonations(limit: number = 5): Promise<APIDonation[]> {
+    const $ = await this.dataService.loadBody();
     const recentDonations = $("#recent-donations").children();
     let donations: APIDonation[] = [];
     recentDonations.each((i, element) => {
@@ -35,8 +35,8 @@ export class DonationsService {
     return donations;
   }
 
-  async getTopDonations(limit: number = 5): Promise<APIDonation[]> {
-    const $ = await this.dataService.fetchBody();
+  public async getTopDonations(limit: number = 5): Promise<APIDonation[]> {
+    const $ = await this.dataService.loadBody();
     const topDonations = $("#top-donations").children();
     let donations: APIDonation[] = [];
     topDonations.each((i, element) => {

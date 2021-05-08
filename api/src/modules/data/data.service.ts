@@ -1,16 +1,23 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { RedisMapCache } from "@sylo-digital/kas";
+import { getRedisConnection } from "@treecord/common";
 import cheerio from "cheerio";
 import fetch from "node-fetch";
 import { TEAMTREES } from "../../constants";
 
 @Injectable()
 export class DataService {
-  // todo: cache with redis, mostly just waiting for sylo digital
-  // caching library
-  async fetchBody() {
+  private readonly cache = new RedisMapCache<cheerio.Root>(getRedisConnection(), { namespace: "treecord", defaultExpiry: "5s" });
+
+  public async loadBody() {
+    const cached = await this.cache.get("data");
+    if (cached) return cached;
     const response = await fetch(TEAMTREES);
     if (!response.ok) throw new InternalServerErrorException();
+
     const body = await response.text();
-    return cheerio.load(body);
+    const loaded = cheerio.load(body);
+    await this.cache.set("data", loaded);
+    return loaded;
   }
 }

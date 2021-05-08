@@ -6,7 +6,7 @@ let connection: Redis.Redis;
 
 export function getRedisConnection() {
   if (connection) return connection;
-  const logger = new Logger({ name: Redis.name });
+  const logger = new Logger(Redis.name);
   connection = new Redis(REDIS_URI, { enableAutoPipelining: true });
   connection.on("connect", () => logger.info("Connected to Redis client."));
   return connection;
