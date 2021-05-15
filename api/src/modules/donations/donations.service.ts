@@ -43,7 +43,7 @@ export class DonationsService {
       if (i >= limit) return false;
       const name = $(element).find(".leader-card__name").text();
       const team = $(element).find(".leader-card__team").text();
-      const trees = this.cleanTrees($(element).attr("data-trees-top")!);
+      const trees = $(element).attr("data-trees-top")!;
       const message = $(element).find(".leader-card__message").text();
       const donatedAt = $(element).find(".leader-card__date").text();
 
