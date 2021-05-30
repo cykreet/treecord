@@ -12,11 +12,11 @@ export class Treecord {
     this.logger = options.logger;
   }
 
-  public async getTotalTrees(): Promise<treecord.Trees> {
+  public async getTotalTrees(): Promise<number> {
     this.logger?.debug("Fetching total trees.");
     const response = await fetchEndpoint(this.host, Endpoint.TOTAL_TREES);
     const body = await response.json();
-    return body as treecord.Trees;
+    return +body;
   }
 
   public async getRecentDonations(limit: number): Promise<treecord.Donation[]> {
@@ -37,7 +37,7 @@ export class Treecord {
 
   private async fetchDonations(endpoint: string, ...params: { name: string; value: any }[]): Promise<treecord.Donation[]> {
     const searchParams = new URLSearchParams();
-    params.forEach((p) => searchParams.set(p.name, p.value));
+    params.forEach((p) => searchParams.append(p.name, p.value));
 
     const response = await fetchEndpoint(this.host, endpoint, { body: searchParams });
     const body = await response.json();
