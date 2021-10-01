@@ -1,0 +1,31 @@
+{
+  "package": {
+    "productName": "treecord",
+    "version": "0.1.0"
+  },
+  "build": {
+    "distDir": "../dist",
+    "devPath": "https://localhost:8080"
+  },
+  "tauri": {
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    },
+    "bundle": {
+      "active": true,
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256"
+      }
+    },
+    "windows": [
+      {
+        "title": "treecord"
+      }
+    ],
+    "security": {
+      "csp": "default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
+    }
+  }
+}

@@ -11,16 +11,5 @@
     "removeComments": true,
     "baseUrl": ".",
     "outDir": "dist"
-  },
-  "references": [
-    {
-      "path": "api"
-    },
-    {
-      "path": "application"
-    },
-    {
-      "path": "common"
-    }
-  ]
+  }
 }

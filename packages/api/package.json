@@ -1,0 +1,17 @@
+{
+  "name": "@treecord/application",
+  "version": "0.9.1",
+  "main": "./dist/index.js",
+  "license": "GPL-3.0",
+  "author": "cykreet (https://github.com/cykreet)",
+  "dependencies": {
+    "@nestjs/common": "^8.0.9",
+    "@nestjs/core": "^8.0.9",
+    "@nestjs/platform-fastify": "^8.0.9",
+    "@treecord/common": "workspace:*",
+    "fastify": "^3.22.0",
+    "fastify-helmet": "^5.3.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.3.0"
+  }
+}

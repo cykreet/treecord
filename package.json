@@ -5,17 +5,10 @@
   "repository": "github:cykreet/treecord.git",
   "author": "cykreet (https://github.com/cykreet)",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "api",
-      "application",
-      "common"
-    ]
-  },
   "scripts": {
-    "clean": "rimraf ./*/{dist,tsconfig.tsbuildinfo,yarn-error.log}"
+    "clean": "rm -rf ./*/{dist,tsconfig.tsbuildinfo,yarn-error.log}"
   },
-  "devDependencies": {
-    "rimraf": "^3.0.2"
-  }
+  "workspaces": [
+    "packages/*"
+  ]
 }
