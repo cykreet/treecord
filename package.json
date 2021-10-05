@@ -1,8 +1,8 @@
 {
-  "name": "treecord",
+  "name": "uproot",
   "version": "0.9.1",
   "license": "GPL-3.0",
-  "repository": "github:cykreet/treecord.git",
+  "repository": "github:cykreet/uproot.git",
   "author": "cykreet (https://github.com/cykreet)",
   "private": true,
   "scripts": {

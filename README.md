@@ -1,4 +1,8 @@
-<h1>
-  <img src="./.assets/icons/icon.png" width="25" />
-  Treecord
-</h1>
+# uproot
+
+## todo (mostly)
+
+- [ ] donations endpoint
+- [ ] ratelimiting
+- [ ] caching
+- [ ] new non-discord logo

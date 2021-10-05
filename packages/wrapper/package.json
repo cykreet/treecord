@@ -1,6 +1,6 @@
 {
-  "name": "treecord",
-  "description": "Node.js wrapper for the Treecord, TeamTrees API.",
+  "name": "uproot",
+  "description": "Node.js wrapper for the unofficial, Uproot, TeamTrees API.",
   "version": "0.9.1",
   "license": "GPL-3.0",
   "main": "./dist/index.js",
@@ -20,7 +20,7 @@
     "build": "tsc --build"
   },
   "dependencies": {
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^3.0.0",
     "tslog": "^3.2.2"
   },
   "devDependencies": {
