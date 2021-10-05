@@ -1,2 +1,2 @@
-export * from "./classes/Treecord";
+export * from "./classes/uproot";
 export * from "./types";

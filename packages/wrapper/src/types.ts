@@ -1,7 +1,7 @@
-import { APIDonation } from "@treecord/api";
+import { APIDonation } from "@uproot/api";
 import { Logger } from "tslog";
 
-export namespace treecord {
+export namespace uproot {
   export interface Options {
     host?: string;
     logger?: Logger;

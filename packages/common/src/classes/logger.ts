@@ -4,6 +4,7 @@ import { IS_DEVELOPMENT } from "../constants";
 export class Logger extends TSLogger {
   private static readonly DEFAULT_OPTIONS: ISettingsParam = {
     displayFilePath: "hidden",
+    displayFunctionName: false,
     colorizePrettyLogs: IS_DEVELOPMENT,
     exposeErrorCodeFrame: IS_DEVELOPMENT,
     minLevel: IS_DEVELOPMENT ? "trace" : "info",
@@ -12,7 +13,7 @@ export class Logger extends TSLogger {
   };
 
   constructor(name?: string, settings?: Omit<ISettingsParam, "name">) {
-    super(Object.assign(Logger.DEFAULT_OPTIONS, name, settings));
+    super(Object.assign(Logger.DEFAULT_OPTIONS, { name }, settings));
   }
 
   public log = (...args: any[]): ILogObject => this.info(...args);
