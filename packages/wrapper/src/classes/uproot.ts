@@ -1,25 +1,23 @@
 import { Logger } from "tslog";
+import { Donation, Options } from "..";
 import { API_HOST, Endpoint } from "../constants";
 import { fetchEndpoint } from "../helpers/fetchEndpoint";
-import { uproot } from "../types";
 
 export class Uproot {
-  private readonly host: string;
+  private readonly host = API_HOST;
   private readonly logger?: Logger;
 
-  constructor(options: uproot.Options) {
-    this.host = options.host ?? API_HOST;
-    this.logger = options.logger;
+  constructor(options?: Options) {
+    this.logger = options?.logger;
   }
 
   public async getTotalTrees(): Promise<number> {
     this.logger?.debug("Fetching total trees.");
-    const response = await fetchEndpoint(this.host, Endpoint.TOTAL_TREES);
-    const body = await response.json();
+    const body = await fetchEndpoint(this.host, Endpoint.TOTAL_TREES);
     return body as number;
   }
 
-  public async getRecentDonations(limit: number): Promise<uproot.Donation[]> {
+  public async getRecentDonations(limit?: number): Promise<Donation[]> {
     this.logger?.debug("Fetching recent donations.");
     return this.fetchDonations(Endpoint.RECENT_DONATIONS, {
       name: "limit",
@@ -27,7 +25,7 @@ export class Uproot {
     });
   }
 
-  public async getTopDonations(limit: number): Promise<uproot.Donation[]> {
+  public async getTopDonations(limit?: number): Promise<Donation[]> {
     this.logger?.debug("Fetching top donations.");
     return this.fetchDonations(Endpoint.TOP_DONATIONS, {
       name: "limit",
@@ -35,12 +33,10 @@ export class Uproot {
     });
   }
 
-  private async fetchDonations(endpoint: string, ...params: { name: string; value: any }[]): Promise<uproot.Donation[]> {
+  private async fetchDonations(endpoint: Endpoint, ...params: { name: string; value: any }[]): Promise<Donation[]> {
     const searchParams = new URLSearchParams();
     params.forEach((p) => searchParams.append(p.name, p.value));
-
-    const response = await fetchEndpoint(this.host, endpoint, { body: searchParams });
-    const body = await response.json();
-    return body as uproot.Donation[];
+    const body = await fetchEndpoint(this.host, endpoint, { searchParams });
+    return body as Donation[];
   }
 }
