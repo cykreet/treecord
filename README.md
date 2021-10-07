@@ -5,4 +5,3 @@
 - [ ] donations endpoint
 - [ ] ratelimiting
 - [ ] caching
-- [ ] new non-discord logo
