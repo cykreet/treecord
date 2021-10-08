@@ -1,7 +1,7 @@
 import { Logger } from "tslog";
 import { Donation, Options } from "..";
 import { API_HOST, Endpoint } from "../constants";
-import { fetchEndpoint } from "../helpers/fetchEndpoint";
+import { fetchEndpoint, SearchParam } from "../helpers/fetchEndpoint";
 
 export class Uproot {
   private readonly host = API_HOST;
@@ -33,10 +33,8 @@ export class Uproot {
     });
   }
 
-  private async fetchDonations(endpoint: Endpoint, ...params: { name: string; value: any }[]): Promise<Donation[]> {
-    const searchParams = new URLSearchParams();
-    params.forEach((p) => searchParams.append(p.name, p.value));
-    const body = await fetchEndpoint(this.host, endpoint, { searchParams });
+  private async fetchDonations(endpoint: Endpoint, ...searchParams: SearchParam[]): Promise<Donation[]> {
+    const body = await fetchEndpoint(this.host, endpoint, { method: "GET", searchParams });
     return body as Donation[];
   }
 }

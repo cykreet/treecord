@@ -19,8 +19,8 @@
     "build": "tsc --build"
   },
   "dependencies": {
-    "got": "^11.8.2",
-    "tslog": "^3.2.2"
+    "tslog": "^3.2.2",
+    "undici": "^4.7.0"
   },
   "devDependencies": {
     "@types/node": "^16.10.2",
